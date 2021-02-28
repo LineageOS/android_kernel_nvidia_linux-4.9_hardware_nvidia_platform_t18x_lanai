@@ -1,0 +1,33 @@
+#include "tegra186-p3636-0001-p3509-0000-a01.dts"
+
+/ {
+	nvidia,dtsfilename = __FILE__;
+
+	firmware {
+		android {
+			compatible = "android,firmware";
+			hardware = "lanai";
+			vbmeta {
+				compatible = "android,vbmeta";
+				parts = "vbmeta,kernel,kernel-dtb,kernel-dtbo,APP,vendor,SOS";
+			};
+			fstab {
+				compatible = "android,fstab";
+				odm {
+					compatible = "android,odm";
+					dev = "/dev/block/platform/3460000.sdhci/by-name/odm";
+					type = "ext4";
+					mnt_flags = "ro";
+					fsmgr_flags = "wait,avb,slotselect";
+				};
+				vendor {
+					compatible = "android,vendor";
+					dev = "/dev/block/platform/3460000.sdhci/by-name/vendor";
+					type = "ext4";
+					mnt_flags = "ro";
+					fsmgr_flags = "wait,avb,slotselect";
+				};
+			};
+		};
+	};
+};
